@@ -1,4 +1,4 @@
-package com.pluralsight.streaming;
+
 
 import org.apache.flink.api.java.tuple.Tuple4;
 import static org.apache.flink.table.api.Expressions.$;
@@ -9,7 +9,7 @@ import org.apache.flink.table.api.TableResult;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
-public class CustomerPurchasesProcessing {
+public class example10 {
 
     public static void main(String[] args) throws Exception {
 
