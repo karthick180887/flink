@@ -1,7 +1,7 @@
 package org.apache.flink;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-public class example6 {
+public class example2 {
 
     public static void main(String[] args) throws Exception {
 
