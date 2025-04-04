@@ -1,12 +1,10 @@
-package com.pluralsight.streaming;
-
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.tuple.Tuple8;
 
-public class MovieSelection {
+public class example9 {
 
     public static void main(String[] args) throws Exception {
 
