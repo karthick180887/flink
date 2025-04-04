@@ -1,4 +1,4 @@
-package com.apache.flink;
+package org.apache.flink;
 
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
