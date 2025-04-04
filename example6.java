@@ -1,10 +1,10 @@
-package com.pluralsight.streaming;
+package org.apache.flink;
 
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
-public class CSVColumnExtractor {
+public class example6 {
 
     public static void main(String[] args) throws Exception {
         // Set up the execution environment
