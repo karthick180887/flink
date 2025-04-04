@@ -1,10 +1,10 @@
-package com.pluralsight.streaming;
+package com.apache.flink;
 
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
-public class HighSpeedDetection {
+public class example1.java {
 
     public static void main(String[] args) throws Exception {
 
