@@ -1,4 +1,3 @@
-package com.pluralsight.streaming;
 
 import org.apache.flink.api.java.tuple.Tuple4;
 import static org.apache.flink.table.api.Expressions.$;
