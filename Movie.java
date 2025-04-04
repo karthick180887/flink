@@ -1,5 +1,3 @@
-package com.pluralsight.streaming;
-
 public class Movie {
 
     private String movieTitle;
