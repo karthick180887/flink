@@ -11,7 +11,7 @@ public class example6 {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         // Read from CSV file (adjust path as needed)
-        DataStream<String> csvData = env.readTextFile("path/to/your/file.csv");
+        DataStream<String> csvData = env.readTextFile("src/main/resources/life_exp.csv");
         
         // Alternative: Read from socket (for testing)
         // DataStream<String> csvData = env.socketTextStream("localhost", 9000);
