@@ -4,7 +4,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 import java.util.InvalidPropertiesFormatException;
 
-public class CarListingsMapping {
+public class example4 {
     
 
     public static void main(String[] args) throws Exception {
