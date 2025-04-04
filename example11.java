@@ -7,7 +7,7 @@ import org.apache.flink.table.api.TableResult;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
-public class CustomerPurchasesProcessing {
+public class example11 {
 
     public static void main(String[] args) throws Exception {
 
