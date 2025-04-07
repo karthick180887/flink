@@ -1,0 +1,21 @@
+Step 1: RowSplitter (Map Function)
+Splits each input row into a Tuple3 of (webpage_id, view_time, count=1).
+Input: "page1,5.0"
+Output: ("page1", 5.0, 1)
+
+Step 2: keyBy(0) (Group by Webpage ID)
+Groups tuples by the first field (webpage_id).
+page1 → [ ("page1",5.0,1), ("page1",7.0,1), ("page1",3.0,1) ]
+page2 → [ ("page2",3.0,1), ("page2",1.0,1) ]
+
+Step 3: SumAndCount (Reduce Function)
+Aggregates total view time and total count per key.
+For page1:
+("page1",5.0,1) + ("page1",7.0,1) → ("page1",12.0,2)
+("page1",12.0,2) + ("page1",3.0,1) → ("page1",15.0,3)
+For page2:
+("page2",3.0,1) + ("page2",1.0,1) → ("page2",4.0,2)
+Step 4: Average (Map Function)
+Computes the average: total_view_time / count.
+("page1",15.0,3) → ("page1",5.0)
+("page2",4.0,2) → ("page2",2.0)
