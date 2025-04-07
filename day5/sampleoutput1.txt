@@ -1,1 +1,32 @@
+Step 1: Splitter (Map Function)
+Input: "01-06-2018,June,Category5,Bat,12"
+Output: ("June", "Category5", "Bat", 12, 1)
 
+Step 2: keyBy(0) (Group by Month)
+("June", "Category5", "Bat", 12, 1)
+("June", "Category4", "Perfume", 10, 1)
+("June", "Category4", "Shirt", 38, 1)
+("June", "Category5", "Bat", 41, 1)
+("June", "Category2", "Laptop", 39, 1)
+("June", "Category1", "PC", 14, 1)
+("June", "Category2", "Tablet", 41, 1)
+("June", "Category2", "Shirt", 20, 1)
+
+Step 3: Reduce1 (Rolling Aggregation)
+For each key (month), it sums up profits and counts records.
+Works like a rolling accumulator:
+First record: ("June", "Category5", "Bat", 12, 1)
+Second record: ("June", "Category4", "Perfume", 10, 1)
+→ Combined: ("June", "Category4", "Perfume", 22, 2) (12+10, 1+1)
+Continues until all June records are processed.
+Final Reduced Tuple for June:
+Total Profit: 12 + 10 + 38 + 41 + 39 + 14 + 41 + 20 = 215
+Total Count: 8
+Output: ("June", last_category, last_product, 215, 8)
+
+Step 4: Map (Compute Average Profit)
+Takes the reduced tuple and computes:
+average_profit = total_profit / count
+Example for June:
+215 / 8 = 26.875
+→ Output: ("June", 26.875)
