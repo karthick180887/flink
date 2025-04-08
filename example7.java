@@ -1,71 +1,61 @@
-
-import org.apache.flink.api.common.functions.FlatMapFunction;
-// ParameterTool that we'll use to pass command line arguments
-import org.apache.flink.api.java.utils.ParameterTool;
+package org.apache.flink;
+import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.functions.ReduceFunction;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.api.java.tuple.Tuple5;
+import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-//  collector that we'll use within the flatmap to specify the output streaming entities.
-import org.apache.flink.util.Collector;
-
-public class SentenceSplitting {
-
-    public static void main(String[] args) throws Exception {
-
-        // A Flink program can be configured using a properties file or via command line arguments. 
-        // The ParameterTool allows you to pass both files, as well as arguments. 
-        // ParameterTool.fromArgs allows us to pass and extract command line arguments specified by the user.
-        final ParameterTool params = ParameterTool.fromArgs(args);
-
-        final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
-        // We'll use these user‑defined params to configure our execution config by invoking setGlobalJobParameters.
-        env.getConfig().setGlobalJobParameters(params);
-
-        // This particular bit of code allows us to instantiate a data stream from different sources.
-        DataStream<String> dataStream;
-
-        //  If we specify an input command line argument, this streaming application will read in data from a file source.
-        if (params.has("input")) {
-            System.out.println("Splitting sentences from a file");
-            // The data stream that we instantiate will use a text file as the source, as specified by this input command line argument.
-            dataStream = env.readTextFile(params.get("input")); 
-        } 
-        // Our streaming application here also has the ability to read in input from a socket on our local machine.
-        // We extract the host and port values from the input command line arguments, and we then use this host and port 
-        // information to instantiate a socketTextStream, which will provide our input stream.
-        else if (params.has("host") && params.has("port")) {
-            System.out.println("Splitting sentences from a socket stream");
-
-            dataStream = env.socketTextStream(
-                    params.get("host"), Integer.parseInt(params.get("port")));
-        } 
-        // If the user has not specified an input file nor a host and port via the command line arguments, 
-        // we'll print out an error to screen and exit from this program.
-        else {
-            System.out.println("Use --host and --port to specify socket OR");
-            System.out.println("Use --input to specify file input");
-            System.exit(1);
-            return;
-        }
-
-        System.out.println("Source initialized, split sentences");
-
-        //Invoke the FlatMapFunction and pass in an object that will split the input sentences into their individual words.
-        DataStream<String> wordDataStream = dataStream.flatMap(new SentenceSplitter());
-
-        wordDataStream.print();
-
-        env.execute("Splitting Words");
-    }
-
-    public static class SentenceSplitter implements FlatMapFunction<String, String> {
-
-        public void flatMap(String sentence, Collector<String> out)
-                throws Exception {
-
-            for (String word: sentence.split(" ")) {
-                out.collect(word);
-            }
-        }
-    }
+import org.apache.flink.streaming.api.windowing.assigners.GlobalWindows;
+import org.apache.flink.streaming.api.windowing.assigners.SlidingProcessingTimeWindows;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
+import org.apache.flink.streaming.api.windowing.evictors.CountEvictor;
+import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.streaming.api.windowing.triggers.CountTrigger;
+public class example7
+{
+	public static void main(String[] args) throws Exception 
+	{
+		// set up the streaming execution environment
+		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+		env.setStreamTimeCharacteristic(TimeCharacteristic.ProcessingTime);
+		env.setParallelism(1);
+		
+		DataStream<String> data = env.socketTextStream("localhost", 9090);
+		
+		                // month, product, category, profit, count
+		DataStream<Tuple5<String, String, String, Integer, Integer>> mapped = data.map(new Splitter());      // tuple  [June,Category5,Bat,12,1]
+		                                                                                                     //        [June,Category4,Perfume,10,1]
+						// groupBy 'month'                                                                                           
+		DataStream<Tuple5<String, String, String, Integer, Integer>> reduced = mapped
+				.keyBy(0)
+				.window(GlobalWindows.create())
+				.trigger(CountTrigger.of(5))
+				.reduce(new Reduce1());
+             																// June { [Category5,Bat,12,1] Category4,Perfume,10,1}	//rolling reduce			
+		                                                                   // reduced = { [Category4,Perfume,22,2] ..... }
+		reduced.writeAsText("/home/flink/flink-day3/src/main/resources/example7out");
+		// execute program
+		env.execute("Avg Profit Per Month");
+	}                                                                           
+	
+	public static class Reduce1 implements ReduceFunction<Tuple5<String, String, String, Integer, Integer>>
+	{
+		public Tuple5<String, String, String, Integer, Integer> reduce(Tuple5<String, String, String, Integer, Integer> current,
+																	   		Tuple5<String, String, String, Integer, Integer> pre_result)
+		{
+	return new Tuple5<String, String, String, Integer, Integer>(current.f0,
+			current.f1, current.f2, current.f3 + pre_result.f3, current.f4 + pre_result.f4); 
+		}
+	}
+	public static class Splitter implements MapFunction<String, Tuple5<String, String, String, Integer, Integer>> 
+	{
+		public Tuple5<String, String, String, Integer, Integer> map(String value)         // 01-06-2018,June,Category5,Bat,12
+		{
+			String[] words = value.split(",");                             // words = [{01-06-2018},{June},{Category5},{Bat}.{12}
+			// ignore timestamp, we don't need it for any calculations
+			//Long timestamp = Long.parseLong(words[5]);
+			return new Tuple5<String, String, String, Integer, Integer>(words[1], words[2],	words[3], Integer.parseInt(words[4]), 1); 
+		}                                                            //    June    Category5      Bat                      12 
+	}
 }
