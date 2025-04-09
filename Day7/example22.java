@@ -1,4 +1,4 @@
-package com.pluralsight.streaming;
+package org.apache.flink;
 
 import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.api.common.accumulators.Histogram;
@@ -11,7 +11,7 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
-public class StreamingCars {
+public class example22 {
 
     public static class Car {
 
