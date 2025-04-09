@@ -1,0 +1,42 @@
+20250330-10:45:20.218 00001BD8 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250404-07:04:09.022 000019F4 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250404-11:59:37.849 000019EC - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250405-00:02:27.607 000036AC - ERROR: ERROR 10054 -1 in TransportTCP1::ReadExact()#2 in TrClient::Run()#239
+20250405-00:02:38.789 000019EC - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250405-00:02:58.869 000019EC - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250405-00:03:18.877 000019EC - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250405-00:03:38.919 000019EC - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250405-00:04:01.113 000019EC - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250405-01:36:09.867 00003200 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250405-10:02:29.566 00004AE8 - ERROR: ERROR 10054 -1 in TransportTCP1::ReadExact()#2 in TrClient::Run()#239
+20250405-10:02:31.554 00004590 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250405-10:03:57.021 00000EA0 - ERROR: ERROR 10054 -1 in TransportTCP1::ReadExact()#2 in TrClient::Run()#239
+20250405-11:02:53.677 00004590 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250405-19:36:38.226 00002B04 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250405-21:51:22.104 00003BB0 - ERROR: Couldn't connect to routers 136.243.104.242:443,80,8080|136.243.104.235:443,80,8080|136.243.18.81:443,80,8080|
+20250405-21:51:33.855 0000265C - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250405-23:45:14.868 00003F14 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250405-23:45:21.208 000010A8 - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250406-06:44:51.156 000010A8 - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250406-06:45:13.113 000010A8 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250406-22:03:42.651 00004384 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250407-06:27:25.700 00002EF8 - ERROR: ERROR 10054 -1 in TransportTCP1::ReadExact()#2 in TrClient::Run()#239
+20250407-06:27:28.022 00001A10 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250407-08:15:53.688 0000315C - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250407-15:40:27.528 00001E48 - ERROR: ERROR 10054 -1 in TransportTCP1::ReadExact()#2 in TrClient::Run()#239
+20250407-15:40:27.669 00001B04 - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250407-15:40:47.781 00001B04 - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250407-15:41:07.887 00001B04 - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250407-15:41:27.972 00001B04 - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250407-15:41:50.308 00001B04 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250408-00:02:16.939 00000440 - ERROR: ERROR 10054 -1 in TransportTCP1::ReadExact()#2 in TrClient::Run()#239
+20250408-00:02:28.182 00001A30 - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250408-00:02:59.341 00001A30 - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250408-00:03:30.471 00001A30 - ERROR: Error {12007} occured while connecting to server "http://rl.ammyy.com" 
+20250408-00:03:52.571 00001A30 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250408-08:54:47.921 000023AC - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250408-16:14:46.571 00004AAC - ERROR: Error {12002} occured while connecting to server "http://rl.ammyy.com" 
+20250408-16:15:09.352 00004AAC - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250408-21:49:15.719 00003E84 - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
+20250409-03:44:21.659 000017CC - ERROR: ERROR 10054 -1 in TransportTCP1::ReadExact()#2 in TrClient::Run()#239
+20250409-03:44:23.774 00000BBC - ERROR: Incorrect status code 404 from 'www.ammyy.com/admin_v3.9_20200220-182209/AA_v3.exe'
