@@ -1,0 +1,39 @@
+@app.route(route="students_req")
+def students_req(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    try:
+        req_body = req.get_json()
+        logging.info(req_body)
+    except ValueError:
+        return func.HttpResponse(
+            "Json body requirement for this function to work!",
+            status_code=500
+        )
+    
+    try:
+        df = pd.DataFrame(req_body['students'])
+        df = df.explode('courses').reset_index(drop=True)
+        courses_df = pd.json_normalize(df['courses'].tolist())
+        df = pd.concat([df.drop(columns=['courses']), courses_df], axis=1)
+        csv_content = df.to_csv(index=False)
+        
+        # Save to Azure Blob Storage
+        connection_string = os.getenv('AzureWebJobsStorage')
+        blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+        container_name = 'students'
+        blob_name = f"students_{pd.Timestamp.now().strftime('%Y%m%d_%H%M%S')}.csv"
+        
+        blob_client = blob_service_client.get_blob_client(container=container_name, blob=blob_name)
+        blob_client.upload_blob(csv_content, overwrite=True)
+        
+        return func.HttpResponse(
+            f"CSV saved successfully as {blob_name}",
+            status_code=200
+        )
+    except Exception as e:
+        logging.error(f"Error processing request: {str(e)}")
+        return func.HttpResponse(
+            f"Error: {str(e)}",
+            status_code=500
+        )
